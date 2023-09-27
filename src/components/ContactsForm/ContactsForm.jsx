@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { nanoid } from "nanoid";
-import { ContainerContactsForm, ContainerContactsLabel, ConteinerContactsButton } from './CotactsFormStyle';
+import { ContainerContactsForm, ContainerContactsLabel, ConteinerContactsButton, ConteinerContactsInput } from './CotactsFormStyle';
 
 export default class ContactsForm extends Component {
 	state = {
@@ -35,11 +35,11 @@ export default class ContactsForm extends Component {
 			<ContainerContactsForm onSubmit={this.handleSubmit}>
 				<ContainerContactsLabel>
 					<span>Name</span>
-					<input onChange={this.hendleInputChange} value={this.state.name} type="text" name="name" required />
+					<ConteinerContactsInput onChange={this.hendleInputChange} value={this.state.name} type="text" name="name" required />
 				</ContainerContactsLabel>
 				<ContainerContactsLabel>
 					<span>Number</span>
-					<input onChange={this.hendleInputChange} value={this.state.number} type="tel" name="number" required />
+					<ConteinerContactsInput onChange={this.hendleInputChange} value={this.state.number} type="tel" name="number" required />
 				</ContainerContactsLabel>
 				<ConteinerContactsButton type="submit" >Add contact</ConteinerContactsButton>
 			</ContainerContactsForm >

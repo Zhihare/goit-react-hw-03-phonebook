@@ -35,14 +35,24 @@ export class App extends Component {
     },
   }
   componentDidMount() {
+    const stringifiedTheme = localStorage.getItem('theme');
     const stringifiedContacts = localStorage.getItem('contacts');
+    const parsedTheme = JSON.parse(stringifiedTheme)
     const parsedContacs = JSON.parse(stringifiedContacts) ?? [];
     this.setState({
       contacts: parsedContacs,
+      themes: {
+        setTheme: parsedTheme,
+        light: LightTheme,
+        dark: DarkTheme,
+      }
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const stringifiedTheme = JSON.stringify(this.state.themes.setTheme);
+    localStorage.setItem('theme', stringifiedTheme);
+
     if (this.state.contacts.length !== prevState.contacts.length) {
       const stringifiedContacts = JSON.stringify(this.state.contacts);
       localStorage.setItem('contacts', stringifiedContacts);

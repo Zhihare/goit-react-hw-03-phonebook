@@ -46,10 +46,11 @@ export const ToogleDarkMode = styled.button`
  position: absolute;
  top: 7%;
  left: 8%;
-     cursor: pointer;
-    border: none;
-    background-color: transparent;
-    	transition-duration: .8s;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  transition-duration: .8s;
+  color: ${(props) => props.theme.buttonColor};
 
 	&:hover{
 		color:red;

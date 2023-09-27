@@ -10,12 +10,15 @@ export const FilterLabel = styled.label`
 	position: relative;
 	`
 export const FilterInput = styled.input`
-    padding: 1px 0px 1px 25px;
+    padding: 4px 0px 4px 24px;
+	background-color: ${(props) => props.theme.tagLineColor};
+	border-style: ridge;
+    color: ${(props) => props.theme.titleColor};
 
 `
 export const FilterSpan = styled.span`
     position: absolute;
 	left: 27%;
-    top: 3px;
+    top: 20%;
 	
 `

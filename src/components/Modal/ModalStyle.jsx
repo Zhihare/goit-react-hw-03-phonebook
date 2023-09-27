@@ -26,10 +26,14 @@ export const ModalWindow = styled.div`
   transform: translate(-50%, -50%);
 
   display: flex;
-      justify-content: space-around;
+  justify-content: space-around;
   flex-direction: row;
-      flex-wrap: wrap;
-          align-content: space-around;
+  flex-wrap: wrap;
+  align-content: space-around;
+
+ background-color: ${(props) => props.theme.modalColor};
+ color: ${(props) => props.theme.titleColor};
+
 `
 export const ModalTitle = styled.p`
 width: 100%
