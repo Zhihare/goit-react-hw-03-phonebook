@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const ConteinerApp = styled.div`
+
  width: 600px;
   margin: 50px auto;
   padding: 2px;
-  background-color: #eaab00;
   background-image: url("data:image/gif;base64,R0lGODlhAQABAPAAAOqrAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="),
     url("data:image/gif;base64,R0lGODlhAQABAPAAAOqrAP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="),
     url("data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==");
@@ -32,10 +32,26 @@ export const ConteinerApp = styled.div`
 `
 
 export const ContentApp = styled.div`
- background: white;
+    position: relative;
+ background: ${(props) => props.theme.modalColor};
   padding: 2em;
   text-align: center;
+  color:${(props) => props.theme.titleColor};
  `
 
 export const TitleApp = styled.h1`
  text-transform: uppercase;`
+
+export const ToogleDarkMode = styled.button`
+ position: absolute;
+ top: 7%;
+ left: 8%;
+     cursor: pointer;
+    border: none;
+    background-color: transparent;
+    	transition-duration: .8s;
+
+	&:hover{
+		color:red;
+	}
+`

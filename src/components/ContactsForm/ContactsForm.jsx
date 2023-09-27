@@ -21,9 +21,8 @@ export default class ContactsForm extends Component {
 			name: this.state.name,
 			number: this.state.number,
 		}
-
 		this.props.handleAddContact(contactsData);
-		this.props.onOpenModal(this.state.name);
+
 
 		this.setState({
 			name: '',

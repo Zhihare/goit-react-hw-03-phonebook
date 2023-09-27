@@ -31,3 +31,6 @@ export const ModalWindow = styled.div`
       flex-wrap: wrap;
           align-content: space-around;
 `
+export const ModalTitle = styled.p`
+width: 100%
+`

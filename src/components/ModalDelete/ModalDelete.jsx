@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { ConteinerContactsButton } from 'components/ContactsForm/CotactsFormStyle';
-import { ModalWindow, Overlay } from 'components/Modal/ModalStyle';
+import { ModalTitle, ModalWindow, Overlay } from 'components/Modal/ModalStyle';
 
 export default class ModalDelete extends Component {
 
@@ -10,10 +10,13 @@ export default class ModalDelete extends Component {
 		this.props.onCloseModalDelete();
 	}
 
+
+
 	render() {
 		return (
 			<Overlay>
-				<ModalWindow>Are you sure you want to delete {this.props.deleteContact}?
+				<ModalWindow>
+					<ModalTitle>Are you sure you want to delete {this.props.deleteContact}?</ModalTitle>
 					<ConteinerContactsButton type="button"
 						style={{
 							width: '150px', height: '60px',

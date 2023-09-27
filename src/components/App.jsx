@@ -1,10 +1,15 @@
 import { Component } from "react"
+import { GoSun } from 'react-icons/go';
+import { HiMoon } from 'react-icons/hi';
 import ContactsForm from "./ContactsForm/ContactsForm";
 import { ContactsList } from "./ContactsList/ContactsList";
 import { Filter } from "./Filter/Filter";
-import { ConteinerApp, ContentApp, TitleApp } from "./AppStyle";
+import { ConteinerApp, ContentApp, TitleApp, ToogleDarkMode } from "./AppStyle";
 import Modal from "./Modal/Modal";
 import ModalDelete from "./ModalDelete/ModalDelete";
+import { ThemeProvider } from "styled-components";
+import { DarkTheme, LightTheme } from "constants/DarkMode";
+
 
 export class App extends Component {
   state = {
@@ -22,6 +27,25 @@ export class App extends Component {
     modalDelete: {
       isOpen: false,
       data: null,
+    },
+    themes: {
+      setTheme: "light",
+      light: LightTheme,
+      dark: DarkTheme,
+    },
+  }
+  componentDidMount() {
+    const stringifiedContacts = localStorage.getItem('contacts');
+    const parsedContacs = JSON.parse(stringifiedContacts) ?? [];
+    this.setState({
+      contacts: parsedContacs,
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts.length !== prevState.contacts.length) {
+      const stringifiedContacts = JSON.stringify(this.state.contacts);
+      localStorage.setItem('contacts', stringifiedContacts);
     }
   }
 
@@ -32,7 +56,7 @@ export class App extends Component {
       alert(`${contactsData.name} is already in contacts`);
       return;
     }
-
+    this.onOpenModal(contactsData.name);
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, contactsData],
@@ -99,32 +123,60 @@ export class App extends Component {
   }
 
 
+  changeTheme = () => {
+
+    if (this.state.themes.setTheme === "light") {
+      this.setState({
+        themes: {
+          setTheme: "dark",
+          light: LightTheme,
+          dark: DarkTheme,
+        },
+      });
+    }
+    else {
+      this.setState({
+        themes: {
+          setTheme: "light",
+          light: LightTheme,
+          dark: DarkTheme,
+        },
+      });
+    }
+  };
+
   render() {
+    const theme = this.state.themes.setTheme
+
+    const icon = this.state.themes.setTheme === "light" ?
+      <HiMoon size={30} /> :
+      <GoSun size={30} />;
 
     return (
-      <ConteinerApp>
-        <ContentApp>
-          <TitleApp title="Phonebook">Phonebook</TitleApp>
-          <ContactsForm handleAddContact={this.handleAddContact}
-            onOpenModal={this.onOpenModal} />
-          <TitleApp>Contacts</TitleApp>
-          <Filter value={this.state.filter} filter={this.changeFilter} />
-          <ContactsList
-            renderFilter={this.getContacts()}
-            onOpenModalDelete={this.onOpenModalDelete}
-          />
-          {this.state.modal.isOpen && <Modal
-            newContactName={this.state.modal.data}
-            onCloseModal={this.onCloseModal} />}
+      <ThemeProvider theme={this.state.themes[theme]} >
+        <ConteinerApp>
+          <ContentApp>
+            <TitleApp title="Phonebook">Phonebook</TitleApp>
+            <ContactsForm handleAddContact={this.handleAddContact} />
+            <TitleApp>Contacts</TitleApp>
+            <Filter value={this.state.filter} filter={this.changeFilter} />
+            <ContactsList
+              renderFilter={this.getContacts()}
+              onOpenModalDelete={this.onOpenModalDelete}
+            />
+            <ToogleDarkMode onClick={this.changeTheme}>{icon}</ToogleDarkMode>
 
-          {this.state.modalDelete.isOpen && <ModalDelete
-            handleDelete={this.handleDelete}
-            deleteContact={this.state.modalDelete.data}
-            onCloseModalDelete={this.onCloseModalDelete} />}
-        </ContentApp>
-      </ConteinerApp>
+            {this.state.modal.isOpen && <Modal
+              newContactName={this.state.modal.data}
+              onCloseModal={this.onCloseModal} />}
 
-
+            {this.state.modalDelete.isOpen && <ModalDelete
+              handleDelete={this.handleDelete}
+              deleteContact={this.state.modalDelete.data}
+              onCloseModalDelete={this.onCloseModalDelete} />}
+          </ContentApp>
+        </ConteinerApp>
+      </ThemeProvider>
     );
   };
 }
