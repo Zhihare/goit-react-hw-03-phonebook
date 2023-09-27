@@ -23,6 +23,7 @@ export default class ContactsForm extends Component {
 		}
 
 		this.props.handleAddContact(contactsData);
+		this.props.onOpenModal(this.state.name);
 
 		this.setState({
 			name: '',
@@ -41,7 +42,7 @@ export default class ContactsForm extends Component {
 					<span>Number</span>
 					<input onChange={this.hendleInputChange} value={this.state.number} type="tel" name="number" required />
 				</ContainerContactsLabel>
-				<ConteinerContactsButton type="submit">Add contact</ConteinerContactsButton>
+				<ConteinerContactsButton type="submit" >Add contact</ConteinerContactsButton>
 			</ContainerContactsForm >
 		)
 	}

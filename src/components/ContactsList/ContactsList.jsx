@@ -2,7 +2,7 @@ import React from 'react'
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { ContactsListButton, ContactsListContainer, ContactsListName } from './ContactsListStyle';
 
-export const ContactsList = ({ handleDelete, renderFilter }) => {
+export const ContactsList = ({ renderFilter, onOpenModalDelete }) => {
 
 
 	return (
@@ -11,7 +11,7 @@ export const ContactsList = ({ handleDelete, renderFilter }) => {
 				return (
 					<ContactsListName key={id}>
 						<p>{name}: {number}</p>
-						<ContactsListButton onClick={() => handleDelete(name)}><RiDeleteBin6Line /> </ContactsListButton>
+						<ContactsListButton onClick={() => onOpenModalDelete(name)}><RiDeleteBin6Line /> </ContactsListButton>
 					</ContactsListName>
 				);
 			})
