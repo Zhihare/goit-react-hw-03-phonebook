@@ -14,11 +14,12 @@ export const FilterInput = styled.input`
 	background-color: ${(props) => props.theme.tagLineColor};
 	border-style: ridge;
     color: ${(props) => props.theme.titleColor};
+	margin-bottom: 24px;
 
 `
 export const FilterSpan = styled.span`
     position: absolute;
-	left: 27%;
-    top: 20%;
+	left: 145px;
+    top: 6px;
 	
 `

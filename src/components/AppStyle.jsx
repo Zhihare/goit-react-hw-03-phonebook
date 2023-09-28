@@ -44,8 +44,8 @@ export const TitleApp = styled.h1`
 
 export const ToogleDarkMode = styled.button`
  position: absolute;
- top: 7%;
- left: 8%;
+ top: 30px;
+ left: 20px;
   cursor: pointer;
   border: none;
   background-color: transparent;
