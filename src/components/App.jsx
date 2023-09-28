@@ -37,7 +37,7 @@ export class App extends Component {
   componentDidMount() {
     const stringifiedTheme = localStorage.getItem('theme');
     const stringifiedContacts = localStorage.getItem('contacts');
-    const parsedTheme = JSON.parse(stringifiedTheme)
+    const parsedTheme = JSON.parse(stringifiedTheme) ?? "light";
     const parsedContacs = JSON.parse(stringifiedContacts) ?? [];
     this.setState({
       contacts: parsedContacs,
