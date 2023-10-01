@@ -62,8 +62,12 @@ export class App extends Component {
 
   handleAddContact = contactsData => {
 
-    if (this.state.contacts.some(contact => contact.name === contactsData.name || contact.number === contactsData.number)) {
-      alert(`${contactsData.name} is already in contacts`);
+    if (this.state.contacts.some(contact => contact.name === contactsData.name)) {
+      alert(` A contact has already been created for this name: ${contactsData.name}`);
+      return;
+    }
+    if (this.state.contacts.some(contact => contact.number === contactsData.number)) {
+      alert(` A contact has already been created for this number: ${contactsData.number}`);
       return;
     }
     this.onOpenModal(contactsData.name);
